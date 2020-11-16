@@ -21,13 +21,13 @@ spec:
   - kind: Rule
     match: Host(`dockerhack.me`) && PathPrefix(`/`)
     services:
-    - name: whoami
+    - name: zone1
       port: 80
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: whoami-web-tls
+  name: app-routable-demo-tls
 spec:
   entryPoints:
     - websecure
@@ -35,7 +35,7 @@ spec:
   - kind: Rule
     match: Host(`dockerhack.me`) && PathPrefix(`/`)
     services:
-    - name: whoami
+    - name: zone1
       port: 80
   tls:
     certResolver: le
