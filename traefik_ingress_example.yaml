@@ -1,0 +1,41 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: app-routable-demo
+spec:
+  ports:
+  - port: 80
+    name: web
+    protocol: TCP
+  selector:
+    app: whoami
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: app-routable-demo
+spec:
+  entryPoints:
+    - web
+  routes:
+  - kind: Rule
+    match: Host(`dockerhack.me`) && PathPrefix(`/`)
+    services:
+    - name: whoami
+      port: 80
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: whoami-web-tls
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - kind: Rule
+    match: Host(`dockerhack.me`) && PathPrefix(`/`)
+    services:
+    - name: whoami
+      port: 80
+  tls:
+    certResolver: le
