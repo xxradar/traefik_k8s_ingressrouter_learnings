@@ -44,7 +44,7 @@ spec:
      volumes:
      - name: cert
        hostPath:
-         path: /mnt/traefik/certs/
+         path: /home/
          type: Directory
 ---
 
