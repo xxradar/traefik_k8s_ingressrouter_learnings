@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+ name: traefik-ingress-controller 
+ labels:
+   k8s-app: traefik-ingress-lb
+   kubernetes.io/cluster-service: "true"
+spec:
+ selector:
+   matchLabels:
+      k8s-app: traefik-ingress-lb
+ template:
+   metadata:
+     labels:
+       k8s-app: traefik-ingress-lb
+       name: traefik-ingress-lb
+   spec:
+     hostNetwork: true
+     dnsPolicy: ClusterFirstWithHostNet
+     serviceAccountName: traefik-ingress-controller
+     terminationGracePeriodSeconds: 60
+     tolerations:
+     - key: node-role.kubernetes.io/master
+       effect: NoSchedule
+     containers:
+     - image: traefik:v2.1.1
+       name: traefik-ingress-lb
+       imagePullPolicy: Always
+       volumeMounts:
+         - mountPath: "/cert/"
+           name: cert
+       resources:
+         requests:
+           cpu: 100m
+           memory: 20Mi
+       args:
+       - --providers.kubernetescrd
+       - --entrypoints.web.address=:80
+       - --entrypoints.websecure.address=:443
+       - --api.insecure
+       - --certificatesresolvers.le.acme.email=masuperadresse@monmail.com
+       - --certificatesresolvers.le.acme.storage=/cert/acme.json
+       - --certificatesResolvers.le.acme.httpChallenge.entryPoint=web
+     volumes:
+     - name: cert
+       hostPath:
+         path: /home/kube/traefik/certs/
+         type: Directory
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+ name: traefik-web-ui
+spec:
+ selector:
+   k8s-app: traefik-ingress-lb
+   app: traefik-ingress-lb
+ ports:
+ - port: 8080
+   targetPort: 8080
+   name: api
+ - port: 443
+   targetPort: 443
+   name: websecure
+ - port: 80
+   targetPort: 80
+   name: web
