@@ -1,47 +1,41 @@
-apiVersion: apps/v1
 kind: Deployment
+apiVersion: apps/v1
 metadata:
- name: traefik-ingress-controller 
- labels:
-   k8s-app: traefik-ingress-lb
-   kubernetes.io/cluster-service: "true"
+  namespace: default
+  name: traefik
+  labels:
+    app: traefik
+
 spec:
- selector:
-   matchLabels:
-      k8s-app: traefik-ingress-lb
- template:
-   metadata:
-     labels:
-       k8s-app: traefik-ingress-lb
-       name: traefik-ingress-lb
-   spec:
-     hostNetwork: true
-     dnsPolicy: ClusterFirstWithHostNet
-     serviceAccountName: traefik-ingress-controller
-     terminationGracePeriodSeconds: 60
-     tolerations:
-     - key: node-role.kubernetes.io/master
-       effect: NoSchedule
-     containers:
-     - image: traefik:v2.1.1
-       name: traefik-ingress-lb
-       imagePullPolicy: Always
-       volumeMounts:
-         - mountPath: "/cert/"
-           name: cert
-       resources:
-         requests:
-           cpu: 100m
-           memory: 20Mi
-       args:
-       - --providers.kubernetescrd
-       - --entrypoints.web.address=:80
-       - --entrypoints.websecure.address=:443
-       - --api.insecure
-       - --certificatesresolvers.le.acme.email=masuperadresse@monmail.com
-       - --certificatesresolvers.le.acme.storage=/cert/acme.json
-       - --certificatesResolvers.le.acme.httpChallenge.entryPoint=web
-     volumes:
-     - name: cert
-       persistentVolumeClaim:
-         claimName: cert-pvc
+  replicas: 1
+  selector:
+    matchLabels:
+      app: traefik
+  template:
+    metadata:
+      labels:
+        app: traefik
+    spec:
+      serviceAccountName: traefik-ingress-controller
+      containers:
+        - name: traefik
+          image: traefik:v2.3
+          args:
+            - --api.insecure
+            - --accesslog
+            - --entrypoints.web.Address=:8000
+            - --entrypoints.websecure.Address=:4443
+            - --providers.kubernetescrd
+            - --certificatesresolvers.myresolver.acme.tlschallenge
+            - --certificatesresolvers.myresolver.acme.email=foo@you.com
+            - --certificatesresolvers.myresolver.acme.storage=acme.json
+            # Please note that this is the staging Let's Encrypt server.
+            # Once you get things working, you should remove that whole line altogether.
+            - --certificatesresolvers.myresolver.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
+          ports:
+            - name: web
+              containerPort: 8000
+            - name: websecure
+              containerPort: 4443
+            - name: admin
+              containerPort: 8080
