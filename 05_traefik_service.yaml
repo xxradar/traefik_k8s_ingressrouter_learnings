@@ -4,16 +4,15 @@ metadata:
  name: traefik-web-ui
 spec:
  selector:
-   k8s-app: traefik-ingress-lb
-   app: traefik-ingress-lb
+   app: traefik
  ports:
  - port: 8080
    targetPort: 8080
    name: api
- - port: 4443
-   targetPort: 443
+ - port: 443
+   targetPort: 4443
    name: websecure
- - port: 8000
-   targetPort: 80
+ - port: 80
+   targetPort: 8000
    name: web
  type: LoadBalancer
