@@ -30,7 +30,7 @@ Deploy a sample app
 git clone https://github.com/xxradar/app_routable_demo.git
 ./setup 
 ```
-Apply an Ingressroute with traefik
+Apply an Ingressroute with traefik. Make sure the hostname resolves to the IP address of Traefik in order Let's Encrypt to work.
 ```
 kubectl apply -n app-routable-demo -f 06_traefik_ingress_example.yaml
 ```
