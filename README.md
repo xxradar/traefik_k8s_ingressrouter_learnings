@@ -1,7 +1,6 @@
-# traefik_ingress
+# Traefik ingressroute learnings
 
-This is work in progress.
-Updated soon
+Clone this repo the use the examples outlined.
 ```
 git clone https://github.com/xxradar/traefik_ingress.git
 ```
