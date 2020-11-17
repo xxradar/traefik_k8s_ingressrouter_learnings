@@ -25,7 +25,7 @@ spec:
           - --entrypoints.web.address=:8000
           - --entrypoints.websecure.address=:4443
           - --api.insecure
-          - --certificatesresolvers.le.acme.email=masuperadresse@monmail.com
+          - --certificatesresolvers.le.acme.email=le@dockerhack.me
           - --certificatesresolvers.le.acme.storage=/cert/acme.json
           - --certificatesResolvers.le.acme.httpChallenge.entryPoint=web  
           ports:
