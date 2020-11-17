@@ -11,9 +11,9 @@ spec:
    targetPort: 8080
    name: api
  - port: 443
-   targetPort: 443
+   targetPort: 4443
    name: websecure
  - port: 80
-   targetPort: 80
+   targetPort: 8000
    name: web
  type: LoadBalancer
