@@ -43,26 +43,5 @@ spec:
        - --certificatesResolvers.le.acme.httpChallenge.entryPoint=web
      volumes:
      - name: cert
-       hostPath:
-         path: /home/
-         type: Directory
----
-
-apiVersion: v1
-kind: Service
-metadata:
- name: traefik-web-ui
-spec:
- selector:
-   k8s-app: traefik-ingress-lb
-   app: traefik-ingress-lb
- ports:
- - port: 8080
-   targetPort: 8080
-   name: api
- - port: 443
-   targetPort: 443
-   name: websecure
- - port: 80
-   targetPort: 80
-   name: web
+       persistentVolumeClaim:
+         claimName: cert-pvc
