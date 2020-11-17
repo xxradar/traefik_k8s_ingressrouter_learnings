@@ -39,6 +39,9 @@ spec:
               containerPort: 4443
             - name: admin
               containerPort: 8080
+          volumeMounts:
+          - mountPath: "/cert/"
+            name: cert 
       volumes:
       - name: cert
         persistentVolumeClaim:
