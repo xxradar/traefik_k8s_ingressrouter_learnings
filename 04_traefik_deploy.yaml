@@ -39,3 +39,7 @@ spec:
               containerPort: 4443
             - name: admin
               containerPort: 8080
+     volumes:
+     - name: cert
+       persistentVolumeClaim:
+         claimName: cert-pvc
