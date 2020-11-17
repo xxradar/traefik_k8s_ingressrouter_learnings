@@ -1,0 +1,36 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: traefik-demo
+provisioner: kubernetes.io/no-provisioner
+volumeBindingMode: WaitForFirstConsumer
+
+--- 
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: cert-pv
+spec: 
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/certs"
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: traefik-demo
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: cert-pvc
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: traefik-demo
