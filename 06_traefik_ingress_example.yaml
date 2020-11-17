@@ -1,15 +1,3 @@
-kind: Service
-apiVersion: v1
-metadata:
-  name: app-routable-demo
-spec:
-  ports:
-  - port: 80
-    name: web
-    protocol: TCP
-  selector:
-    app: whoami
----
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
