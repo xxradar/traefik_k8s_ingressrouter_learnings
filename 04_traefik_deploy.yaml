@@ -22,8 +22,8 @@ spec:
           image: traefik:v2.3
           args:
           - --providers.kubernetescrd
-          - --entrypoints.web.address=:80
-          - --entrypoints.websecure.address=:443
+          - --entrypoints.web.address=:8000
+          - --entrypoints.websecure.address=:4443
           - --api.insecure
           - --certificatesresolvers.le.acme.email=masuperadresse@monmail.com
           - --certificatesresolvers.le.acme.storage=/cert/acme.json
