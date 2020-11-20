@@ -85,3 +85,11 @@ spec:
     permanent: false
 EOF
 ```
+Apply the http ingressroute
+```
+kubectl apply -f 09_dashboard-http-ingressroute.yaml
+```
+Apply the https ingressroute
+```
+kubectl apply -f 10_dashboard-https-ingressroute.yaml
+```
