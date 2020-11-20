@@ -5,6 +5,7 @@ Information is based on
 - https://doc.traefik.io/traefik/reference/dynamic-configuration/kubernetes-crd/ 
 - https://blog.wescale.fr/2020/03/06/traefik-2-reverse-proxy-dans-kubernetes/
 
+### Create a working Traefik environmet in K8S
 ```
 git clone https://github.com/xxradar/traefik_ingress.git
 ```
