@@ -9,6 +9,15 @@ spec:
  - port: 8080
    targetPort: 8080
    name: api
+---
+apiVersion: v1
+kind: Service
+metadata:
+ name: traefik-web
+spec:
+ selector:
+   app: traefik
+ ports:
  - port: 443
    targetPort: 4443
    name: websecure
