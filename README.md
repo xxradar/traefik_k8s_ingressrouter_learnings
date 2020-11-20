@@ -39,6 +39,49 @@ Apply an Ingressroute with traefik. Make sure the hostname resolves to the IP ad
 kubectl apply -n app-routable-demo -f 06_traefik_ingress_example.yaml
 ```
 ### Secure the Traefik management dashboard
+Create a user and password to authenticate the dashboard
 ```
+htpasswd -nb admin Traefik | openssl base64
+    YWRtaW46JGFwcjEkMW85UHdJekUkY0NMQlhDNTVyQmUvc1QyMERyUlNWLwoK
+```
+Store the user and passwork in a K8S secret
+```
+kubectl apply -f - <<EOF
+apiVersion: v1
+kind: Secret
+metadata:
+  name: authsecret
+  namespace: default
 
+data:
+  users: |2
+    YWRtaW46JGFwcjEkMW85UHdJekUkY0NMQlhDNTVyQmUvc1QyMERyUlNWLwoK
+EOF
+```
+Next create a Traefik middleware the invoke the authentication
+```
+kubectl apply -f - <<EOF
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: test-auth
+spec:
+  basicAuth:
+    realm: MyRealm
+    headerField: X-WebAuth-User
+    secret: authsecret
+EOF
+```
+Create a Traefik Middleware to redirect from http to https
+```
+kubectl apply -f - <<EOF
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: dashboard-redirectscheme
+spec:
+  redirectScheme:
+    scheme: https
+    permanent: false
+EOF
 ```
