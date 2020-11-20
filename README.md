@@ -38,3 +38,7 @@ Apply an Ingressroute with traefik. Make sure the hostname resolves to the IP ad
 ```
 kubectl apply -n app-routable-demo -f 06_traefik_ingress_example.yaml
 ```
+### Secure the Traefik management dashboard
+```
+
+```
