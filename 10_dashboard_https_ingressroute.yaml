@@ -1,0 +1,17 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: dashboard-tls
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - kind: Rule
+    match: Host(`db.dockerhack.me`) && PathPrefix(`/`)
+    services:
+    - name: traefik-web-ui
+      port: 8080
+    middlewares:
+    - name: test-auth
+  tls:
+    certResolver: le
