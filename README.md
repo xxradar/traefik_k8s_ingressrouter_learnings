@@ -41,7 +41,7 @@ kubectl apply -n app-routable-demo -f 06_traefik_ingress_example.yaml
 ### Secure the Traefik management dashboard
 Create a user and password to authenticate the dashboard
 ```
-$AUTH=$(htpasswd -nb admin Traefik | openssl base64)
+AUTH=$(htpasswd -nb admin Traefik | openssl base64)
 ```
 Store the user and passwork in a K8S secret
 ```
