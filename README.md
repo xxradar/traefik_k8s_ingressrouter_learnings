@@ -49,7 +49,7 @@ kubectl apply -f - <<EOF
 apiVersion: v1
 kind: Secret
 metadata:
-  name: authsecret
+  name: dashboard-authsecret
   namespace: default
 
 data:
@@ -63,12 +63,12 @@ kubectl apply -f - <<EOF
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
-  name: test-auth
+  name: dashboard-auth
 spec:
   basicAuth:
     realm: MyRealm
     headerField: X-WebAuth-User
-    secret: authsecret
+    secret: dashboard-authsecret
 EOF
 ```
 Create a Traefik Middleware to redirect from http to https
