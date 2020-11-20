@@ -7,7 +7,6 @@ spec:
    app: traefik
  ports:
  - port: 8080
-   targetPort: 8080
    name: api
 ---
 apiVersion: v1
