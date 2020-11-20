@@ -25,7 +25,7 @@ This currently deploys only one traefik pod with HostNetworking
 ```
 kubectl apply -f 04_traefik_deploy.yaml
 ```
-This is not working because of how DigitalOceans works w/ LB ---- need fix   
+Create a LoadBalancing service
 ```
 kubectl apply -f 05_traefik_service.yaml
 ```
