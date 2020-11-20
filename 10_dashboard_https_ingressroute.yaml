@@ -12,6 +12,6 @@ spec:
     - name: traefik-web-ui
       port: 8080
     middlewares:
-    - name: test-auth
+    - name: dashboard-auth
   tls:
     certResolver: le
