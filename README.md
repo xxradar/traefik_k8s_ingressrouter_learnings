@@ -91,5 +91,5 @@ kubectl apply -f 09_dashboard-http-ingressroute.yaml
 ```
 Apply the https ingressroute
 ```
-kubectl apply -f 10_dashboard-https-ingressroute.yaml
+kubectl apply -f 10_dashboard_https_ingressroute.yaml
 ```
