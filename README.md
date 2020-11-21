@@ -3,7 +3,7 @@
 Clone this repo to use the examples outlined. <br>
 Information is based on 
 - https://doc.traefik.io/traefik/reference/dynamic-configuration/kubernetes-crd/ 
-- <li>https:/github.com/xxradar</li>
+- https:/github.com/xxradar
 
 ### Create a working Traefik environmet in K8S
 ```
