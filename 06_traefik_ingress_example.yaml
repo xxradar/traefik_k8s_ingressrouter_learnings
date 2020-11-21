@@ -7,7 +7,7 @@ spec:
     - web
   routes:
   - kind: Rule
-    match: Host(`dockerhack.me`) && PathPrefix(`/`)
+    match: Host(`app.radarhack.com`) && PathPrefix(`/`)
     services:
     - name: zone1
       port: 80
@@ -21,7 +21,7 @@ spec:
     - websecure
   routes:
   - kind: Rule
-    match: Host(`dockerhack.me`) && PathPrefix(`/`)
+    match: Host(`app.radarhack.com`) && PathPrefix(`/`)
     services:
     - name: zone1
       port: 80
