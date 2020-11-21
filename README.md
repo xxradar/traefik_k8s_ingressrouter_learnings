@@ -94,9 +94,9 @@ kubectl apply -f 10_dashboard_https_ingressroute.yaml
 ```
 
 ### Adding and playing with middlewares
-Create a new middleware
+Create a new middleware, please note this is namespaced scoped.
 ```
-kubectl apply -f - <<EOF
+kubectl apply -n app-routable-demmo -f - <<EOF
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
@@ -108,4 +108,8 @@ spec:
     customResponseHeaders:
       X-Custom-Response-Header: "traefikdemoresponse"
 EOF
+```
+Update the ingressroute
+```
+kubectl apply -n app-routable-demmo -f 
 ```
