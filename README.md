@@ -104,8 +104,8 @@ metadata:
 spec:
   headers:
     customRequestHeaders:
-      X-Script-Name: "test"
+      X-Script-Name: "traefikdemorequest"
     customResponseHeaders:
-      X-Custom-Response-Header: "value"
+      X-Custom-Response-Header: "traefikdemoresponse"
 EOF
 ```
