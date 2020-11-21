@@ -113,3 +113,33 @@ Update the ingressroute
 ```
 kubectl apply -n app-routable-demmo -f 11_traefik_ingress_header_insert.yaml
 ```
+
+Adding authentication
+```
+```
+AUTH=$(htpasswd -nb admin password | openssl base64)
+```
+```
+kubectl apply -n app-routable-demo -f - <<EOF
+apiVersion: v1
+kind: Secret
+metadata:
+  name: app-authsecret
+data:
+  users: |2
+    $AUTH
+EOF
+```
+```
+kubectl apply -n app-routable-demo -f - <<EOF
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: app-auth
+spec:
+  basicAuth:
+    realm: MyRealm
+    headerField: X-WebAuth-User
+    secret: app-authsecret
+EOF
+```
