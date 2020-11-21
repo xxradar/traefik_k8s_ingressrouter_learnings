@@ -93,7 +93,8 @@ Apply the https ingressroute
 kubectl apply -f 10_dashboard_https_ingressroute.yaml
 ```
 
-### Adding and playing with middlewares
+### Adding middlewares
+#### Header insert middleware example
 Create a new middleware, please note this is namespaced scoped.
 ```
 kubectl apply -n app-routable-demmo -f - <<EOF
@@ -114,8 +115,8 @@ Update the ingressroute
 kubectl apply -n app-routable-demmo -f 11_traefik_ingress_header_insert.yaml
 ```
 
-Adding authentication
-```
+#### Application basicauth middleware chaining example
+
 ```
 AUTH=$(htpasswd -nb admin password | openssl base64)
 ```
