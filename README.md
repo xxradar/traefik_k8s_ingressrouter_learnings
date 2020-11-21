@@ -165,3 +165,25 @@ spec:
   tls:
     certResolver: le
  ```
+#### Traefik redirectregex middleware example
+```
+kubectl apply -n app-routable-demo -f - <<EOF
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: test-redirectregex
+spec:
+  redirectRegex:
+    regex: https://app.radarhack.com/medium
+    replacement: https://medium.com/@xxradar
+EOF
+```
+Update the ingressroute accordingly
+```
+...
+    middlewares:
+    - name: testheader
+    - name: test-redirectregex
+    - name: app-auth
+ ...
+ ```
