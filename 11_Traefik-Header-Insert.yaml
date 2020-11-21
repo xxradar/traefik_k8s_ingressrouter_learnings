@@ -26,7 +26,7 @@ spec:
     services:
     - name: zone1
       port: 80
-  middlewares:
+    middlewares:
     - name: testheader
   tls:
     certResolver: le
