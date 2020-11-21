@@ -27,6 +27,6 @@ spec:
     - name: zone1
       port: 80
   middlewares:
-    - name: dashboard-auth
+    - name: testheader
   tls:
     certResolver: le
