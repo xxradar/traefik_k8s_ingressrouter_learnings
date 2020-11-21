@@ -5,7 +5,7 @@ Information is based on
 - https://doc.traefik.io/traefik/reference/dynamic-configuration/kubernetes-crd/ 
 - https://github.com/xxradar
 
-### Create a working Traefik environmet in K8S
+### Create a working Traefik environment in K8S
 ```
 git clone https://github.com/xxradar/traefik_ingress.git
 ```
