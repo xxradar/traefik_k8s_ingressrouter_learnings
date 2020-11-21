@@ -3,7 +3,7 @@
 Clone this repo to use the examples outlined. <br>
 Information is based on 
 - https://doc.traefik.io/traefik/reference/dynamic-configuration/kubernetes-crd/ 
-- https://blog.wescale.fr/2020/03/06/traefik-2-reverse-proxy-dans-kubernetes/
+- https:/github.com/xxradar
 
 ### Create a working Traefik environmet in K8S
 ```
