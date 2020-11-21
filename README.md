@@ -111,5 +111,5 @@ EOF
 ```
 Update the ingressroute
 ```
-kubectl apply -n app-routable-demmo -f 
+kubectl apply -n app-routable-demmo -f 11_traefik_ingress_header_insert.yaml
 ```
