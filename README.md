@@ -92,4 +92,3 @@ Apply the https ingressroute
 ```
 kubectl apply -f 10_dashboard_https_ingressroute.yaml
 ```
-Remove or block access to the public facing dashboard
