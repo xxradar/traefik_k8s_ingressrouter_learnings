@@ -144,3 +144,24 @@ spec:
     secret: app-authsecret
 EOF
 ```
+Update the ingressroute accordingly
+```
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: app-routable-demo-tls
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - kind: Rule
+    match: Host(`app.radarhack.com`) && PathPrefix(`/`)
+    services:
+    - name: zone1
+      port: 80
+    middlewares:
+    - name: testheader
+    - name: app-auth
+  tls:
+    certResolver: le
+ ```
