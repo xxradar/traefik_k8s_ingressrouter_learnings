@@ -7,7 +7,7 @@ spec:
     - web
   routes:
   - kind: Rule
-    match: Host(`db.dockerhack.me`) && PathPrefix(`/`)
+    match: Host(`db.radarhack.com`) && PathPrefix(`/`)
     middlewares:
     - name: dashboard-redirectscheme
     services:
