@@ -21,7 +21,7 @@ A generic way to provide certificate storage
 ```
 kubectl apply -f 02_traefik_storage.yaml
 ```
-This currently deploys only one traefik pod with HostNetworking
+This currently deploys only one traefik pod
 ```
 kubectl apply -f 04_traefik_deploy.yaml
 ```
