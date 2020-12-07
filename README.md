@@ -43,7 +43,7 @@ Create a user and password to authenticate the dashboard
 ```
 AUTH=$(htpasswd -nb admin Traefik | openssl base64)
 ```
-Store the user and passwork in a K8S secret
+Store the user and password in a K8S secret
 ```
 kubectl apply -f - <<EOF
 apiVersion: v1
